@@ -5,8 +5,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OurForum.Services;
+using OurForum.Service;
 using OurForum.Data.Models;
 using OurForum.Data;
+using OurForum.Data.Interface;
+using ForumService = OurForum.Service.ForumService;
 
 namespace OurForum
 {
@@ -31,7 +34,7 @@ namespace OurForum
 
 			// Add application services.
 			services.AddTransient<IEmailSender, EmailSender>();
-
+			services.AddScoped<IForum, ForumService>();
 			services.AddMvc();
 		}
 
