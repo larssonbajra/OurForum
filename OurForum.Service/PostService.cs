@@ -1,4 +1,5 @@
-﻿using OurForum.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using OurForum.Data;
 using OurForum.Data.Interface;
 using OurForum.Data.Models;
 using System;
@@ -16,7 +17,7 @@ namespace OurForum.Service
 		{
 			_context = context; 
 		}
-		public Task Add(Post post)
+		public Task Add(post post)
 		{
 			throw new NotImplementedException();
 		}
@@ -31,22 +32,28 @@ namespace OurForum.Service
 			throw new NotImplementedException();
 		}
 
-		public IEnumerable<Post> GetAll()
+		public IEnumerable<post> GetAll()
 		{
 			throw new NotImplementedException();
 		}
 
-		public Post GetById(int id)
+		public post GetById(int id)
+		{
+			return _context.Posts.Where(post => post.Id == id)
+				.Include(post => post.User)
+				.Include(post => post.Reply)
+				.ThenInclude(reply=>reply.User)
+				.Include(post => post.Forum)
+				.First();
+
+		}
+
+		public IEnumerable<post> GetFilteredPosts(string searchQuery)
 		{
 			throw new NotImplementedException();
 		}
 
-		public IEnumerable<Post> GetFilteredPosts(string searchQuery)
-		{
-			throw new NotImplementedException();
-		}
-
-		public IEnumerable<Post> GetPostsByForum(int id)
+		public IEnumerable<post> GetPostsByForum(int id)
 		{
 			return  _context.Forums
 				.Where(Forum => Forum.Id == id)

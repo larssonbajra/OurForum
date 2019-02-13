@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OurForum.Data.Models
 {
-	public class Post
+	public class post
 	{
 		public int Id { get; set; }
 		public string Title { get; set; }

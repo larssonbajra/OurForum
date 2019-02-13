@@ -55,7 +55,7 @@ namespace OurForum.Controllers
 			return View(model);
 		}
 
-		private ForumListingModel BuildForumListing(Post post)
+		private ForumListingModel BuildForumListing(post post)
 		{
 			var forum = post.Forum;
 			return BuildForumListing(forum);

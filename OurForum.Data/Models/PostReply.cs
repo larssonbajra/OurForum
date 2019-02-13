@@ -11,6 +11,6 @@ namespace OurForum.Data.Models
 		public DateTime Created { get; set; }
 
 		public virtual ApplicationUser User { get; set; }
-		public virtual Post Post { get; set; }
+		public virtual post Post { get; set; }
 	}
 }
