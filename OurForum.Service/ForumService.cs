@@ -59,9 +59,9 @@ namespace OurForum.Service
 			throw new NotImplementedException();
 		}
 
-		Data.Models.Forum IForum.GetById(int id)
-		{
-			throw new NotImplementedException();
-		}
+		//Data.Models.Forum IForum.GetById(int id)
+		//{
+		//	throw new NotImplementedException();
+		//}
 	}
 }
