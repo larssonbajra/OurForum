@@ -61,19 +61,21 @@ namespace OurForum.Controllers
 			var userId = _userManager.GetUserId(User);
 			var user = await _userManager.FindByIdAsync(userId);
 			var post = BuildPost(model, user);
-			await _postService.Add(post);
+			await _postService.Add(post); //block current thread
 			// TODO : Implement User Rating Management
-			return RedirectToAction("Index", "Post", post.Id);
+			return RedirectToAction("Index", "Post", new { id= post.Id });
 		}
 
 		private post BuildPost(NewPostModel model, ApplicationUser user)
 		{
+			var forum = _forumService.GetById(model.ForumId);
 			return new post
 			{
 				Title=model.Title,
 				Content=model.Content,
 				Created=DateTime.Now,
-				User=user
+				User=user,
+				Forum=forum
 
 
 			};
